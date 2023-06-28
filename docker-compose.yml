@@ -6,6 +6,9 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
+      args:
+        user: "boris"
+        uid: "1000"
     image: digitalocean.com/php
     container_name: app
     restart: unless-stopped
@@ -13,9 +16,9 @@ services:
     environment:
       SERVICE_NAME: app
       SERVICE_TAGS: dev
-    working_dir: /var/www
+    working_dir: /var/www/practice2023
     volumes:
-      - ./:/var/www
+      - ./:/var/www/practice2023
       - ./php/local.ini:/usr/local/etc/php/conf.d/local.ini
     networks:
       - app-network
@@ -30,7 +33,7 @@ services:
       - "80:80"
       - "443:443"
     volumes:
-      - ./:/var/www
+      - ./:/var/www/practice2023
       - ./nginx/conf.d/:/etc/nginx/conf.d/
     networks:
       - app-network
