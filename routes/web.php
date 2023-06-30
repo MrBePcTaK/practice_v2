@@ -13,6 +13,17 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+// Route::get('/', function () {
+//     return view('welcome');
+// });
+
+Route::get('/', function() {
+    \Illuminate\Support\Facades\Http::post('https://api.telegram.org/bot1637322871:AAFg2qbCAPP-sTDBnm027YHQ3obJi-5MN5c/sendMessage', [
+        'chat_id' => '681625605',
+        'text' => 'Reload'
+    ]);
+});
+
+Route::group(['namespace' => 'App\Http\Controllers'], function(){
+    Route::post('/webhook', 'WebhookController@resp');
 });

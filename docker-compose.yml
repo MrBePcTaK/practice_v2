@@ -56,6 +56,19 @@ services:
       - ./mysql/my.cnf:/etc/mysql/my.cnf
     networks:
       - app-network
+  
+  #Ngrok Service
+  # ngrok:
+  #   image: 'ngrok/ngrok:alpine'
+  #   ports:
+  #     - '4040:4040'
+  #   environment:
+  #     NGROK_AUTHTOKEN: '${NGROK_AUTH}'
+  #   command: 'http 80'
+  #   depends_on:
+  #     - app
+  #   networks:
+  #     - app-network
 
 #Docker Networks
 networks:
