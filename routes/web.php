@@ -1,6 +1,5 @@
 <?php
 
-use App\Models\Product;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Route;
 
@@ -16,13 +15,13 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function() {
-    Http::post('https://api.telegram.org/bot1637322871:AAFg2qbCAPP-sTDBnm027YHQ3obJi-5MN5c/sendMessage', [
-        'chat_id' => '681625605',
+    Http::post('https://api.telegram.org/bot' . config('telegram.bot_token') . '/sendMessage', [
+        'chat_id' => config('telegram.admin_chat'),
         'text' => 'Reload'
     ]);
     return view('welcome');
 });
 
 Route::group(['namespace' => 'App\Http\Controllers'], function(){
-    Route::post('/webhook', 'WebhookController@resp');
+    Route::post('/webhook', 'WebhookController@response');
 });
